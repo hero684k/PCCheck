@@ -1,4 +1,4 @@
-# PCCheck v2.5
+# PCCheck v1.0
 
 Portable system analyzer. Scan processes, autostart, scheduled tasks, USB history, recent files and new executables.
 
