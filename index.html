@@ -3,65 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCCheck v1.0 — by hero684k</title>
+    <title>PCCheck v2.5 — by hero684k</title>
     <style>
         :root {
-            --bg: #F5F5F5;
-            --card: #FFFFFF;
-            --border: #E0E0E0;
-            --accent: #0078D4;
-            --text: #1A1A1A;
-            --muted: #666;
-            --red: #CC0000;
-            --green: #008800;
-            --orange: #E07000;
+            --bg: #0A0A0F;
+            --card: #111118;
+            --border: #1E1E2E;
+            --accent: #A78BFA;
+            --accent2: #60A5FA;
+            --text: #E2E8F0;
+            --muted: #94A3B8;
+            --red: #F87171;
+            --green: #4ADE80;
+            --orange: #FBBF24;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             background: var(--bg);
+            background-image:
+                radial-gradient(ellipse at 30% 0%, rgba(167,139,250,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(96,165,250,0.04) 0%, transparent 50%);
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
         }
 
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 48px;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo {
-            font-size: 48px;
-            margin-bottom: 12px;
+            font-size: 56px;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
             margin-bottom: 8px;
-            color: var(--text);
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .version {
             font-size: 16px;
             color: var(--muted);
-            margin-bottom: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
 
         .description {
             font-size: 18px;
             color: var(--muted);
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto 32px;
         }
 
@@ -69,18 +102,20 @@
         .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: fadeUp 1s ease-out 0.2s both;
+            backdrop-filter: blur(10px);
         }
 
         /* Screenshot */
         .screenshot {
-            margin-bottom: 36px;
-            border-radius: 8px;
+            margin-bottom: 40px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .screenshot img {
@@ -89,29 +124,97 @@
         }
 
         /* Features */
+        .features-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 16px;
-            margin-bottom: 36px;
+            margin-bottom: 40px;
         }
 
         .feature {
-            background: #FAFAFA;
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature:hover {
+            border-color: rgba(167,139,250,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .feature:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
         .feature h3 {
             font-size: 15px;
             margin-bottom: 6px;
             color: var(--text);
+            font-weight: 700;
         }
 
         .feature p {
             font-size: 13px;
             color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
         }
 
         /* Tags */
@@ -120,16 +223,17 @@
             flex-wrap: wrap;
             gap: 8px;
             justify-content: center;
-            margin-bottom: 36px;
+            margin-bottom: 40px;
         }
 
         .tag {
-            background: #F0F0F0;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            padding: 4px 12px;
+            background: rgba(167,139,250,0.08);
+            border: 1px solid rgba(167,139,250,0.2);
+            color: var(--accent);
+            padding: 5px 14px;
             border-radius: 50px;
             font-size: 12px;
+            font-weight: 600;
         }
 
         /* Download */
@@ -139,25 +243,33 @@
 
         .download-btn {
             display: inline-block;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #8B5CF6, var(--accent2));
             color: #FFF;
             text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 8px;
+            padding: 18px 48px;
+            border-radius: 14px;
             font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: background 0.2s;
+            font-weight: 800;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(167,139,250,0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 8px 30px rgba(167,139,250,0.3); }
+            50% { box-shadow: 0 8px 60px rgba(167,139,250,0.5); }
         }
 
         .download-btn:hover {
-            background: #005A9E;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(167,139,250,0.5);
         }
 
         .download-info {
             font-size: 13px;
             color: var(--muted);
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .download-info a {
@@ -184,24 +296,27 @@
             margin: 0 auto 12px;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
-            h1 { font-size: 28px; }
-            .card { padding: 20px; }
+            h1 { font-size: 32px; }
+            .card { padding: 24px; }
+            .stats { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <div class="grid-bg"></div>
 
     <div class="container">
 
         <div class="hero">
             <div class="logo">🛡️</div>
             <h1>PCCheck</h1>
-            <div class="version">v1.0 — by hero684k</div>
+            <div class="version">v2.5 · by hero684k</div>
             <p class="description">
-                Portable system analyzer. Scan processes, autostart, USB history,
-                recent files and new executables. VirusTotal integration.
+                Portable system analyzer with VirusTotal integration.
+                Scan processes, autostart, USB history and more.
             </p>
         </div>
 
@@ -211,30 +326,52 @@
                 <img src="screenshot.png" alt="PCCheck Screenshot" loading="lazy">
             </div>
 
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Scan Categories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Portable EXE</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Dependencies</div>
+                </div>
+            </div>
+
+            <div class="features-title">What It Scans</div>
             <div class="features">
                 <div class="feature">
-                    <h3>⚙ Processes</h3>
-                    <p>Digital signature verification for all running processes. Color-coded risk levels.</p>
+                    <div class="feature-icon">⚙</div>
+                    <h3>Processes</h3>
+                    <p>All running processes with digital signature verification and risk levels.</p>
                 </div>
                 <div class="feature">
-                    <h3>📋 Autostart</h3>
-                    <p>Registry Run/RunOnce entries with risk assessment. Hide Microsoft entries.</p>
+                    <div class="feature-icon">📋</div>
+                    <h3>Registry Autostart</h3>
+                    <p>Run / RunOnce entries from HKCU and HKLM with smart risk assessment.</p>
                 </div>
                 <div class="feature">
-                    <h3>⏰ Scheduled Tasks</h3>
-                    <p>All Windows scheduled tasks in one place. Check commands and executable paths.</p>
+                    <div class="feature-icon">⏰</div>
+                    <h3>Scheduled Tasks</h3>
+                    <p>Every Windows scheduled task in one place. Check what runs on startup.</p>
                 </div>
                 <div class="feature">
-                    <h3>🔌 USB History</h3>
-                    <p>Every USB device ever connected. With last connection timestamps.</p>
+                    <div class="feature-icon">🔌</div>
+                    <h3>USB History</h3>
+                    <p>All USB devices ever connected with last connection timestamps.</p>
                 </div>
                 <div class="feature">
-                    <h3>📄 Recent Files</h3>
-                    <p>Files opened in the last 7 days. With resolved shortcut targets.</p>
+                    <div class="feature-icon">📄</div>
+                    <h3>Recent Files</h3>
+                    <p>Files opened in the last 7 days with resolved shortcut targets.</p>
                 </div>
                 <div class="feature">
-                    <h3>📁 New Executables</h3>
-                    <p>EXE/DLL files created in the last 14 days. Find suspicious new software.</p>
+                    <div class="feature-icon">📁</div>
+                    <h3>New Executables</h3>
+                    <p>EXE/DLL/SYS files created in the last 14 days across system folders.</p>
                 </div>
             </div>
 
@@ -242,13 +379,13 @@
                 <span class="tag">Processes</span>
                 <span class="tag">Autostart</span>
                 <span class="tag">Registry</span>
-                <span class="tag">USB</span>
+                <span class="tag">USB History</span>
                 <span class="tag">Recent Files</span>
                 <span class="tag">New Files</span>
                 <span class="tag">VirusTotal</span>
                 <span class="tag">Portable</span>
                 <span class="tag">Windows</span>
-                <span class="tag">Security</span>
+                <span class="tag">MIT License</span>
             </div>
 
             <div class="download-section">
@@ -256,7 +393,7 @@
                     ⬇ DOWNLOAD
                 </a>
                 <p class="download-info">
-                    Portable EXE · No installation · Windows 10/11<br>
+                    Portable EXE · No installation required · Windows 10/11<br>
                     <a href="https://github.com/hero684k/PCCheck">GitHub</a> ·
                     <a href="https://github.com/hero684k/PCCheck/blob/main/LICENSE">MIT License</a>
                 </p>
@@ -267,7 +404,7 @@
         <div class="footer">
             <div class="footer-line"></div>
             © 2026 hero684k · MIT License<br>
-            Not affiliated with Microsoft or any other company.
+            Not affiliated with any company or organization.
         </div>
 
     </div>
