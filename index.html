@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCCheck v2.5 — by hero684k</title>
+    <style>
+        :root {
+            --bg: #F5F5F5;
+            --card: #FFFFFF;
+            --border: #E0E0E0;
+            --accent: #0078D4;
+            --text: #1A1A1A;
+            --muted: #666;
+            --red: #CC0000;
+            --green: #008800;
+            --orange: #E07000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .version {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .description {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* Screenshot */
+        .screenshot {
+            margin-bottom: 36px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .feature {
+            background: #FAFAFA;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .feature h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .feature p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 36px;
+        }
+
+        .tag {
+            background: #F0F0F0;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+
+        /* Download */
+        .download-section {
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #005A9E;
+        }
+
+        .download-info {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .download-info a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .download-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-line {
+            width: 40px;
+            height: 2px;
+            background: var(--border);
+            margin: 0 auto 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="hero">
+            <div class="logo">🛡️</div>
+            <h1>PCCheck</h1>
+            <div class="version">v2.5 — by hero684k</div>
+            <p class="description">
+                Portable system analyzer. Scan processes, autostart, USB history,
+                recent files and new executables. VirusTotal integration.
+            </p>
+        </div>
+
+        <div class="card">
+
+            <div class="screenshot">
+                <img src="screenshot.png" alt="PCCheck Screenshot" loading="lazy">
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>⚙ Processes</h3>
+                    <p>Digital signature verification for all running processes. Color-coded risk levels.</p>
+                </div>
+                <div class="feature">
+                    <h3>📋 Autostart</h3>
+                    <p>Registry Run/RunOnce entries with risk assessment. Hide Microsoft entries.</p>
+                </div>
+                <div class="feature">
+                    <h3>⏰ Scheduled Tasks</h3>
+                    <p>All Windows scheduled tasks in one place. Check commands and executable paths.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔌 USB History</h3>
+                    <p>Every USB device ever connected. With last connection timestamps.</p>
+                </div>
+                <div class="feature">
+                    <h3>📄 Recent Files</h3>
+                    <p>Files opened in the last 7 days. With resolved shortcut targets.</p>
+                </div>
+                <div class="feature">
+                    <h3>📁 New Executables</h3>
+                    <p>EXE/DLL files created in the last 14 days. Find suspicious new software.</p>
+                </div>
+            </div>
+
+            <div class="tags">
+                <span class="tag">Processes</span>
+                <span class="tag">Autostart</span>
+                <span class="tag">Registry</span>
+                <span class="tag">USB</span>
+                <span class="tag">Recent Files</span>
+                <span class="tag">New Files</span>
+                <span class="tag">VirusTotal</span>
+                <span class="tag">Portable</span>
+                <span class="tag">Windows</span>
+                <span class="tag">Security</span>
+            </div>
+
+            <div class="download-section">
+                <a href="https://github.com/hero684k/PCCheck/releases/latest/download/PCCheck.exe" class="download-btn">
+                    ⬇ DOWNLOAD
+                </a>
+                <p class="download-info">
+                    Portable EXE · No installation · Windows 10/11<br>
+                    <a href="https://github.com/hero684k/PCCheck">GitHub</a> ·
+                    <a href="https://github.com/hero684k/PCCheck/blob/main/LICENSE">MIT License</a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-line"></div>
+            © 2026 hero684k · MIT License<br>
+            Not affiliated with Microsoft or any other company.
+        </div>
+
+    </div>
+
+</body>
+</html>
